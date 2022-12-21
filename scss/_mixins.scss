@@ -1,0 +1,193 @@
+// BOXSIZING
+@mixin box-sizing($type) {
+    -webkit-box-sizing: $type;
+    -moz-box-sizing: $type;
+    box-sizing: $type;
+}
+
+
+// BORDER RADIUS
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+
+//  FLEXBOX
+@mixin flexbox {
+    display: -webkit-box; // old
+    display: -moz-box; // old
+    display: -ms-flexbox; // ie
+    display: -webkit-flex; // new
+    display: flex; // new
+}
+
+@mixin flex($values) {
+    -webkit-box-flex: $values;
+    -moz-box-flex: $values;
+    -ms-flex: $values;
+    -webkit-flex: $values;
+    flex: $values;
+}
+
+@mixin flex-flow($values: (row nowrap)) {
+    // No Webkit Box fallback.
+    -webkit-flex-flow: $values;
+    -moz-flex-flow: $values;
+    -ms-flex-flow: $values;
+    flex-flow: $values;
+}
+
+@mixin order($int: 0) {
+    -webkit-box-ordinal-group: $int + 1;
+    -webkit-order: $int;
+    -moz-order: $int;
+    -ms-flex-order: $int;
+    order: $int;
+}
+
+@mixin justify-content($value: flex-start) {
+    @if $value==flex-start {
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+    }
+
+    @else if $value==flex-end {
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+    }
+
+    @else if $value==space-between {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+    }
+
+    @else if $value==space-around {
+        -ms-flex-pack: distribute;
+    }
+
+    @else {
+        -webkit-box-pack: $value;
+        -ms-flex-pack: $value;
+    }
+
+    -webkit-justify-content: $value;
+    -moz-justify-content: $value;
+    justify-content: $value;
+}
+
+@mixin align-items($value: stretch) {
+    @if $value==flex-start {
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+    }
+
+    @else if $value==flex-end {
+        -webkit-box-align: end;
+        -ms-flex-align: end;
+    }
+
+    @else {
+        -webkit-box-align: $value;
+        -ms-flex-align: $value;
+    }
+
+    -webkit-align-items: $value;
+    -moz-align-items: $value;
+    align-items: $value;
+}
+
+@mixin align-content($value: stretch) {
+    // No Webkit Box Fallback.
+    -webkit-align-content: $value;
+    -moz-align-content: $value;
+
+    @if $value==flex-start {
+        -ms-flex-line-pack: start;
+    }
+
+    @else if $value==flex-end {
+        -ms-flex-line-pack: end;
+    }
+
+    @else {
+        -ms-flex-line-pack: $value;
+    }
+
+    align-content: $value;
+}
+
+@mixin flex-grow($int: 0) {
+    -webkit-box-flex: $int;
+    -webkit-flex-grow: $int;
+    -moz-flex-grow: $int;
+    -ms-flex-positive: $int;
+    flex-grow: $int;
+}
+
+@mixin flex-shrink($int: 1) {
+    -webkit-flex-shrink: $int;
+    -moz-flex-shrink: $int;
+    -ms-flex-negative: $int;
+    flex-shrink: $int;
+}
+
+
+//   TRANSITIONS
+@mixin transition($args) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+
+//   BREAKPOINTS
+@mixin bp-large {
+    @media only screen and (min-width: $large) {
+        @content;
+    }
+}
+
+@mixin bp-medium {
+    @media only screen and (min-width: $medium) {
+        @content;
+    }
+}
+
+@mixin bp-small {
+    @media only screen and (max-width: $small) {
+        @content;
+    }
+}
+
+
+//  GRADIENTS
+
+@mixin horizontal-gradient($from, $to, $stop: 100%) {
+    /* fallback/image non-cover color */
+    background-color: $from;
+  
+    /* Firefox 3.6+ */
+    background-image: -moz-linear-gradient(left, $from 0%, $to $stop);
+  
+    /* Safari 4+, Chrome 1+ */
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, $from), color-stop($stop, $to));
+  
+    /* Safari 5.1+, Chrome 10+ */
+    background-image: -webkit-linear-gradient(left, $from 0%, $to $stop);
+  
+    /* Opera 11.10+ */
+    background-image: -o-linear-gradient(left, $from 0%, $to $stop);
+  
+    /* IE10+ */
+    background: -ms-linear-gradient(left, $from 0%, $to $stop);
+  
+    /* Standard */
+    background: linear-gradient(to right, $from 0%, $to $stop);
+  
+    /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$from', endColorstr='$to',GradientType=1 );
+  }
