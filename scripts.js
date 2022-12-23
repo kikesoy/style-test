@@ -3,6 +3,8 @@ const landingConfig = {
     langCode: "ES"
 }
 
+const consoleDiv = document.querySelector("#console")
+
 
 const answers = [
     {
@@ -48,7 +50,13 @@ function getResponse(){
 
 function setGender(elem){
     userAnswer.gender = elem.value
-    console.log(userAnswer)
+    consoleDiv.innerHTML = JSON.stringify(userAnswer)
+}
+
+
+function setAnswer(elem,index){
+    userAnswer.response[index] = elem.value
+    consoleDiv.innerHTML = JSON.stringify(userAnswer)
 }
 
 
