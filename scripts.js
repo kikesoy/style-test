@@ -70,27 +70,40 @@ async function getTradu(langId) {
 }
 
 
+function randomInt(maxNumber){
+    return Math.floor(Math.random() * maxNumber);
+}
+
+
 function templateLayout(data){
+    const randomPortrait = randomInt(10)
+    const randomBackground = randomInt(4)
+
     return app.innerHTML = `
         <section class="slide__container slide__container--cover" id="slideCover">
-            <div class="slide__media">
-                <picture>
-                    <img src="./assets/cover.jpg" alt="${data.txtSldSubtitle}" />
+            <article class="slide__cover slide__cover--${randomBackground}">
+                <picture class="cover__picture">
+                    <img src="./assets/cover-face-${randomPortrait}.jpg" alt="${data.txtSldSubtitle}" />
                 </picture>
-            </div>
-            <div class="slide__content">
-                <header>
-                    <h1>${data.txtSldTitle}</h1>
-                    <h2>${data.txtSldSubtitle}</h2>
-                </header>
+            </article>
 
-                <footer>
-                    <p>${data.txtGenderSelect}</p>
+            <article class="slide__content">
+                <div class="content__wrapper">
+                    <header class="content__header">
+                        <h1 class="content__title">${data.txtSldTitle}</h1>
+                    </header>
 
-                    <button class="btn__default" type="button" onclick="setGender(this);" id="genderWoman" value="woman">${data.genderWoman}</button>
-                    <button class="btn__default" type="button" onclick="setGender(this);" id="genderMan" value="man">${data.genderMan}</button>
-                </footer>
-            </div>
+                    <main class="content__body">
+                        <p class="element__paragraph element__paragraph--large">${data.txtSldSubtitle}</p>
+                    </main>
+
+                    <footer class="content__footer">
+                        <button class="btn__default" type="button" onclick="startQuiz(this);" id="startQuiz" value="start">
+                            <span class="btn__content">${data.ctaStart}</span>
+                        </button>
+                    </footer>
+                </div>
+            </article>
         </section>
 
         <section class="questions__container" id="questions"> </section>
@@ -125,27 +138,66 @@ function templateQuestions(data){
     const questionsContainer = document.querySelector("#questions")
 
     if(questionsContainer){
-        answers[0].patterns[0].map(function(item,index){
+        questionsContainer.innerHTML += `
+            <section class="slide__container slide__container--question slide__container--question-0" id="slideQuestion0">
+                <article class="question__media">
+                    <picture class="question__cover">
+                        <img src="./assets/slide-0.jpg" alt="" />
+                    </picture>
+                </article>
+                
+                <article class="question__content">
+                    <div class="content__wrapper">
+                        <header class="question__header">
+                            <h1 class="content__title">${data.txtSlide0}</h1>
+                        </header>
+
+                        <footer class="question__footer">
+                            <button class="btn__default" type="button" onclick="setGender(this);" id="genderWoman" value="woman">
+                                <span class="btn__content">${data.ctaSlide0Opt02}</span>
+                            </button>
+
+                            <button class="btn__default" type="button" onclick="setGender(this);" id="genderMan" value="man">
+                                <span class="btn__content">${data.ctaSlide0Opt01}</span>
+                            </button>
+                        </footer>
+                    </div>
+                </article>
+            </section>
+            `
+
+        answers[0].patterns[0].map(function(item, index){
+            index = index + 1
 
             questionsContainer.innerHTML += `
             <section class="slide__container slide__container--question slide__container--question-${index}" id="slideQuestion${index}">
-                <div class="slide__media">
-                    <picture>
-                        <img src="./assets/question-${index}.jpg" alt="" />
+                <article class="question__media">
+                    <picture class="question__cover">
+                        <img src="./assets/slide-${index}.jpg" alt="" />
                     </picture>
-                </div>
+                </article>
                 
-                <div class="slide__content">
-                    <header>
-                        <h1>${data["txtSlide"+index]}</h1>
-                    </header>
+                <article class="question__content">
+                    <div class="content__wrapper">
+                        <header class="question__header">
+                            <h1 class="content__title">${data["txtSlide"+index]}</h1>
+                        </header>
 
-                    <footer>
-                        <button class="btn__default" type="button" onclick="setAnswer(this,${index});" value="0">${data["ctaSlide"+index+"Opt01"]}</button>
+                        <footer class="question__footer">
+                            <button class="btn__default" type="button" onclick="setAnswer(this,${index});" value="0">
+                                <span class="btn__content">
+                                    ${data["ctaSlide"+index+"Opt01"]}
+                                </span>
+                            </button>
 
-                        <button class="btn__default" type="button" onclick="setAnswer(this,${index});" value="1">${data["ctaSlide"+index+"Opt02"]}</button>
-                    </footer>
-                </div>
+                            <button class="btn__default" type="button" onclick="setAnswer(this,${index});" value="1">
+                                <span class="btn__content">
+                                    ${data["ctaSlide"+index+"Opt02"]}
+                                </span>
+                            </button>
+                        </footer>
+                    </div>
+                </article>
             </section>
             `
         }) 
@@ -169,12 +221,12 @@ async function setTemplates(){
 
 function getResponse(){
     for(let answer of answers){
-        //console.log(answer.response)
+        // console.log(answer.response)
         for(let pattern of answer.patterns){
-            //console.log(pattern)
+            // console.log(pattern)
             if(userAnswer.response.every((element, index) => element === pattern[index])){
                 // console.log(pattern)
-                //console.log(answer.response)
+                // console.log(answer.response)
                 return answer.response
             }
         }
