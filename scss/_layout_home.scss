@@ -1,0 +1,45 @@
+.slide__{
+
+    &cover{
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 125vw;
+    
+        &--0{
+            background-image: url(/assets/bg-stone.jpg);
+        }
+    
+        &--1{
+            background-image: url(/assets/bg-fire.jpg);
+        }
+    
+        &--2{
+            background-image: url(/assets/bg-ocean.jpg);
+        }
+    
+        &--3{
+            background-image: url(/assets/bg-sky.jpg);
+        }    
+    }
+}
+
+.cover__{
+    &picture{
+        position: relative;
+        width: 40%;
+        margin: auto;
+        border: 8px #fff solid;
+
+        img{
+            @include media-sizing;
+        }
+    }
+}
