@@ -1,0 +1,24 @@
+.btn__{
+
+    &default{
+        border: 0 none;
+        background: transparent;
+        padding: 0;
+        padding: ($spacer * .5);
+        margin-bottom: ($spacer * 1.5);
+        @include horizontal-gradient($primary-color, $secondary-color, 100%);
+        min-width: 75%;
+        text-align: left;
+        line-height: 1;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-family: $share-tech-mono;
+        box-shadow: #000 8px 8px 0;
+    }
+
+    &content{
+        display: block;
+        padding: ($spacer * .75) $spacer ;
+        background: #fff;
+    }
+}
