@@ -1,0 +1,266 @@
+/* RESET */
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Shrikhand&display=swap");
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button {
+  outline: none;
+}
+
+picture, video {
+  display: block;
+}
+
+.btn__default {
+  border: 0 none;
+  background: transparent;
+  padding: 0;
+  padding: 0.5rem;
+  margin-bottom: 1.5rem;
+  /* fallback/image non-cover color */
+  background-color: #1bffdd;
+  /* Firefox 3.6+ */
+  background-image: -moz-linear-gradient(left, #1bffdd 0%, #ccff00 100%);
+  /* Safari 4+, Chrome 1+ */
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, #1bffdd), color-stop(100%, #ccff00));
+  /* Safari 5.1+, Chrome 10+ */
+  background-image: -webkit-linear-gradient(left, #1bffdd 0%, #ccff00 100%);
+  /* Opera 11.10+ */
+  background-image: -o-linear-gradient(left, #1bffdd 0%, #ccff00 100%);
+  /* IE10+ */
+  background: -ms-linear-gradient(left, #1bffdd 0%, #ccff00 100%);
+  /* Standard */
+  background: linear-gradient(to right, #1bffdd 0%, #ccff00 100%);
+  /* IE6-9 */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="$from", endColorstr="$to",GradientType=1 );
+  min-width: 75%;
+  text-align: left;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-family: "Share Tech Mono", monospace;
+  box-shadow: #000 8px 8px 0;
+}
+.btn__content {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #fff;
+}
+
+body, html {
+  height: 100%;
+  font-family: "Share Tech Mono", monospace;
+}
+
+.landing__container {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.landing__container * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.slide__container {
+  position: relative;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  -moz-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+}
+.slide__content {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+}
+
+.content__wrapper {
+  margin: 0 7.5%;
+}
+.content__title {
+  font-family: "Shrikhand", cursive;
+  font-size: 40px;
+  line-height: 1;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+.content__title::after {
+  content: "";
+  position: relative;
+  display: block;
+  width: 75%;
+  height: 0.25rem;
+  /* fallback/image non-cover color */
+  background-color: #1bffdd;
+  /* Firefox 3.6+ */
+  background-image: -moz-linear-gradient(left, #1bffdd 0%, #ccff00 100%);
+  /* Safari 4+, Chrome 1+ */
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, #1bffdd), color-stop(100%, #ccff00));
+  /* Safari 5.1+, Chrome 10+ */
+  background-image: -webkit-linear-gradient(left, #1bffdd 0%, #ccff00 100%);
+  /* Opera 11.10+ */
+  background-image: -o-linear-gradient(left, #1bffdd 0%, #ccff00 100%);
+  /* IE10+ */
+  background: -ms-linear-gradient(left, #1bffdd 0%, #ccff00 100%);
+  /* Standard */
+  background: linear-gradient(to right, #1bffdd 0%, #ccff00 100%);
+  /* IE6-9 */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="$from", endColorstr="$to",GradientType=1 );
+  margin-top: 1rem;
+}
+.content__header {
+  margin-top: -4rem;
+  padding: 0 2rem;
+  padding-top: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+.content__body {
+  padding: 0 2rem;
+}
+.content__footer {
+  padding: 0 2rem;
+}
+
+.element__paragraph {
+  line-height: 133%;
+  margin-bottom: 2rem;
+}
+
+.element__paragraph--large {
+  font-size: 20px;
+}
+
+.slide__cover {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 125vw;
+}
+.slide__cover--0 {
+  background-image: url(/assets/bg-stone.jpg);
+}
+.slide__cover--1 {
+  background-image: url(/assets/bg-fire.jpg);
+}
+.slide__cover--2 {
+  background-image: url(/assets/bg-ocean.jpg);
+}
+.slide__cover--3 {
+  background-image: url(/assets/bg-sky.jpg);
+}
+
+.cover__picture {
+  position: relative;
+  width: 40%;
+  margin: auto;
+  border: 8px #fff solid;
+}
+.cover__picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.slide__container--question {
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+}
+
+.question__wrapper {
+  position: relative;
+  margin: 0 7.5%;
+}
+.question__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+}
+.question__cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.question__header {
+  position: relative;
+  margin-top: -4rem;
+  padding: 0 2rem;
+  padding-top: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+.question__body {
+  padding: 0 2rem;
+}
+.question__footer {
+  padding: 0 2rem;
+}
+
+/*# sourceMappingURL=style.css.map */
