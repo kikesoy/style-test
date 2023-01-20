@@ -15,6 +15,9 @@ let userAnswer = {
 }
 
 
+let slideCounter = 0
+
+
 const answers = [
     {
         patterns: [ [0,0,0,0],[0,0,1,0],[1,0,1,0],[1,0,1,1] ],
@@ -98,7 +101,7 @@ function templateLayout(data){
                     </main>
 
                     <footer class="content__footer">
-                        <button class="btn__default" type="button" onclick="startQuiz(this);" id="startQuiz" value="start">
+                        <button class="btn__default" type="button" onclick="nextSlide(0);" id="startQuiz" value="0">
                             <span class="btn__content">${data.ctaStart}</span>
                         </button>
                     </footer>
@@ -106,7 +109,7 @@ function templateLayout(data){
             </article>
         </section>
 
-        <section class="questions__container" id="questions"> </section>
+        <section class="questions__container questions__container--hidden" id="questions"> </section>
 
         <section class="slide__container slide__container--result" id="slideResult">
             <div class="slide__media">
@@ -167,32 +170,32 @@ function templateQuestions(data){
             `
 
         answers[0].patterns[0].map(function(item, index){
-            index = index + 1
+            const key = index + 1
 
             questionsContainer.innerHTML += `
-            <section class="slide__container slide__container--question slide__container--question-${index}" id="slideQuestion${index}">
+            <section class="slide__container slide__container--question slide__container--question-${key}" id="slideQuestion${key}">
                 <article class="question__media">
                     <picture class="question__cover">
-                        <img src="./assets/slide-${index}.jpg" alt="" />
+                        <img src="./assets/slide-${key}.jpg" alt="" />
                     </picture>
                 </article>
                 
                 <article class="question__content">
                     <div class="content__wrapper">
                         <header class="question__header">
-                            <h1 class="content__title">${data["txtSlide"+index]}</h1>
+                            <h1 class="content__title">${data["txtSlide"+key]}</h1>
                         </header>
 
                         <footer class="question__footer">
                             <button class="btn__default" type="button" onclick="setAnswer(this,${index});" value="0">
                                 <span class="btn__content">
-                                    ${data["ctaSlide"+index+"Opt01"]}
+                                    ${data["ctaSlide"+key+"Opt01"]}
                                 </span>
                             </button>
 
                             <button class="btn__default" type="button" onclick="setAnswer(this,${index});" value="1">
                                 <span class="btn__content">
-                                    ${data["ctaSlide"+index+"Opt02"]}
+                                    ${data["ctaSlide"+key+"Opt02"]}
                                 </span>
                             </button>
                         </footer>
@@ -237,18 +240,39 @@ function getResponse(){
 
 function setGender(elem){
     userAnswer.gender = elem.value
+    nextSlide()
     consoleDiv.innerHTML = JSON.stringify(userAnswer)
 }
 
 
 function setAnswer(elem,index){
     userAnswer.response[index] = parseInt(elem.value)
+    nextSlide()
     consoleDiv.innerHTML = JSON.stringify(userAnswer) + " - " + getResponse()
     
 }
 
 
 function nextSlide(){
+    const questionSlides = document.querySelectorAll(".slide__container--question")
+    const currentSlide = document.querySelector(`.slide__container--question-${slideCounter}`)
+
+    if( currentSlide ){
+        for(var slide of questionSlides){
+            if(slide.classList.contains("current")){
+                slide.classList.remove("current")
+                slide.classList.add("previous")
+            }
+        }
+
+        currentSlide.classList.add("current")
+        console.log(currentSlide)
+        slideCounter = slideCounter + 1
+    } else {
+        console.log("mostrar resultado")
+    }
+
+    console.log(slideCounter)
     
 }
 
